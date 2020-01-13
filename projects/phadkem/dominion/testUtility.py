@@ -10,11 +10,11 @@ import random
 from collections import defaultdict
 
 #determine number of curses cards
-def getCurseNum(player_names):
+def _getCurseNum(player_names):
     return -10 + 10 * len(player_names)
 
 #determine the numer of victory cards
-def getVictoryNum(player_names):
+def _getVictoryNum(player_names):
     if len(player_names)>2:
         return 12
     else:
@@ -22,7 +22,7 @@ def getVictoryNum(player_names):
 
 #create a box and fill it with the correct cards
 def getBox(player_names):
-    nV = getVictoryNum(player_names)
+    nV = _getVictoryNum(player_names)
     box = {}
     box["Woodcutter"]=[Dominion.Woodcutter()]*10
     box["Smithy"]=[Dominion.Smithy()]*10
@@ -52,7 +52,7 @@ def getBox(player_names):
     return box
 
 #create the supply order of each of the different types of cards
-def getSupplyOrder():
+def _getSupplyOrder():
     return {0:['Curse','Copper'],2:['Estate','Cellar','Chapel','Moat'],
             3:['Silver','Chancellor','Village','Woodcutter','Workshop'],
             4:['Gardens','Bureaucrat','Feast','Militia','Moneylender','Remodel','Smithy','Spy','Thief','Throne Room'],
@@ -66,8 +66,8 @@ def getSupply(box, player_names):
     random10 = boxlist[:10]
     supply = defaultdict(list,[(k,box[k]) for k in random10])
     #determine the victory and curse cards based on the number of players
-    nV = getVictoryNum(player_names)
-    nC = getCurseNum(player_names)
+    nV = _getVictoryNum(player_names)
+    nC = _getCurseNum(player_names)
     #add the treasure, victory and curse cards, the supply always has these cards
     supply["Copper"]=[Dominion.Copper()]*(60-len(player_names)*7)
     supply["Silver"]=[Dominion.Silver()]*40
@@ -94,7 +94,7 @@ def getPlayers(player_names):
 #play the game
 def playGame(supply, players):
     #get the supply order
-    supply_order = getSupplyOrder()
+    supply_order = _getSupplyOrder()
     #initialize the trash
     trash = []
     #set the turn number
