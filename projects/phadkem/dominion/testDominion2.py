@@ -9,7 +9,8 @@ import testUtility
 
 
 #Set the player names
-player_names = ["Annie","*Ben","*Carla"]
+#Introduce Test Scenario: Setting up the game with too many players 
+player_names = ["Annie","*Ben","*Carla","*Josh","*Rich","*Judy","*Susie","*Erik"]
 
 #get the card box
 box = testUtility.getBox(player_names)
